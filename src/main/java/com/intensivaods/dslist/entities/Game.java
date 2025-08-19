@@ -6,40 +6,43 @@ import org.hibernate.mapping.PrimaryKey;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Game")
+@Table(name = "tb_game")
 public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     @Column(name = "id", nullable = false)
     private Long id;
-    @Column(name = "title", nullable = false, length = 60)
+    @Column(name = "title", nullable = false)
     private String title;
+    @Column(name = "genre", nullable = false)
+    private String genre;
     @Column(name = "game_year", nullable = false)
     private  Integer year;
-    @Column(name = "platforms" , nullable = false , length = 60)
-    private String platfoorms;
+    @Column(name = "platform" , nullable = false)
+    private String platform;
     @Column(name = "score" , nullable = false)
     private Double score;
     @Column (name = "imgUrl" , nullable = false)
     private String imgUrl;
-    @Column(name = "shortDescription", nullable = false, length = 100)
+    @Column(name = "shortDescription", nullable = false)
     private String shortDescription;
-    @Column(name = "longDescription", nullable = false, length = 255)
+    @Column(name = "longDescription", nullable = false, columnDefinition = "TEXT")
     private String longDescription;
 
-    public Game(Long id, String title, Integer year, String platfoorms, Double score, String imgUrl, String shortDescription, String longDescription) {
+    public Game() {
+    }
+
+    public Game(Long id, String title, String genre, Integer year, String platform, Double score, String imgUrl, String shortDescription, String longDescription) {
         this.id = id;
         this.title = title;
+        this.genre = genre;
         this.year = year;
-        this.platfoorms = platfoorms;
+        this.platform = platform;
         this.score = score;
         this.imgUrl = imgUrl;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
-    }
-
-    public Game() {
     }
 
     public Long getId() {
@@ -58,6 +61,14 @@ public class Game {
         this.title = title;
     }
 
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
     public Integer getYear() {
         return year;
     }
@@ -66,12 +77,12 @@ public class Game {
         this.year = year;
     }
 
-    public String getPlatforms() {
-        return platfoorms;
+    public String getPlatform() {
+        return platform;
     }
 
-    public void setPlatfoorms(String platfoorms) {
-        this.platfoorms = platfoorms;
+    public void setPlatform(String platfoorms) {
+        this.platform = platfoorms;
     }
 
     public Double getScore() {
