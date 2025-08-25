@@ -2,6 +2,7 @@ package com.intensivaods.dslist.controller;
 
 import com.intensivaods.dslist.dto.GameListDto;
 import com.intensivaods.dslist.dto.GameMinDto;
+import com.intensivaods.dslist.dto.ReplacementDto;
 import com.intensivaods.dslist.service.GameListService;
 import com.intensivaods.dslist.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +37,10 @@ public class GameListController {
         GameListDto byIdList = gameListService.findByIdList(id);
         return byIdList;
     }
+
+    @PostMapping ("/{id}/replacement")
+    public void move(@PathVariable long id, @RequestBody ReplacementDto body){
+       gameListService.move(id,body.getSourceIndex(), body.getDestiationIndex());
+    }
+
 }
